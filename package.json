@@ -1,6 +1,6 @@
 ﻿{
   "name": "dsh-qq-sounds",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "鐢?QQ 鐨勬彁绀洪煶鎻愰啋浣狅細DSH 浠诲姟瀹屾垚鏃跺搷銆屽ソ鍙嬫秷鎭€嶏紝闇€瑕佷綘鏀炬潈闄?/ 鍥炵瓟闂鏃跺搷銆岀郴缁熸秷鎭€嶃€傝嚜鍔ㄦ帰娴嬫湰鏈?QQ 闊虫晥锛屾湭瑁?QQ 鏃跺洖钀藉埌鍐呯疆浠?QQ 闊炽€俀Q-style notification sounds for DeepSeek Harness.",
   "type": "module",
   "exports": {
