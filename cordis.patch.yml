@@ -1,0 +1,11 @@
+# dsh-qq-sounds 的 profile 补丁层。
+#
+# `dsh plugin add` 把本包写进 profile 的 `dsh.profile.bundles` 后，这一层会在每次 boot
+# 时被应用，插入一行 Loader 条目：
+#   - 宿主半 = exports["."]（lib/host.js），负责配置、QQ 音效探测与 /api/qq-sounds/* 路由；
+#   - 浏览器半 = package.json 的 dsh.client 声明（lib/client.js），由 /plugins 伺服。
+# 改了本文件必须重启 DSH；只改 lib/client.js 时页面会经客户端 HMR 自动换新。
+- insert:
+    - id: qq-sounds
+      name: dsh-qq-sounds
+      config: {}
