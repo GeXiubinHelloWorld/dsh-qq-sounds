@@ -16,9 +16,16 @@
 - **Uses your own QQ sound files.** The host half auto-detects the QQ install directory (registry uninstall entries + common paths) and reads `Misc\Sound\Classic\*.wav`; you can also type any local audio path.
 - **Works without QQ.** Two built-in "QQ-like" synthesized tones ship with the plugin (no Tencent audio inside).
 - **Repeat reminders** for unhandled approvals / questions (default 25–30s, 4–6 times), stopped by a click, returning to the window, or the attempt cap.
-- **Quiet by design:** quiet hours (cross-midnight), "only when DSH is not focused", 0–100% volume.
+- **Quiet by design:** quiet hours (cross-midnight), optional "only when DSH is not focused", 0–100% volume.
+- **Audible by default, focused or not:** "only when DSH is not focused" ships **off** — sounds still fire while you work in another window.
 - **Away from the desk:** optional desktop notification (click to focus) + 🔔 in the window title.
 - **Per-event configuration:** each of the four events has its own sound, mute, or off switch.
+
+## Hard guarantees
+
+1. **It can never block DSH from starting.** A notification plugin has no business failing the host boot. The browser half wraps both `factory` and `apply` in try/catch (any error degrades to an inert plugin); the host half isolates init, route registration and startup. Worst case: the plugin does nothing.
+2. **It never touches other plugins.** Zero runtime dependencies — installing adds exactly one package, it does not replace, upgrade or remove anything. That is why it coexists with the IM bridge (`@xmanrui/dsh-im`), the paper radar, token-stats, etc.
+3. **It is audible out of the box.** No settings needed after a restart: completion = QQ `msg.wav`, approval/question = `system.wav`, focus gating off.
 
 ## Install
 

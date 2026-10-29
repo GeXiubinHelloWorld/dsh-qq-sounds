@@ -1,6 +1,6 @@
 {
   "name": "dsh-qq-sounds",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "用 QQ 的提示音提醒你：DSH 任务完成时响「好友消息」，需要你放权限 / 回答问题时响「系统消息」。自动探测本机 QQ 音效，未装 QQ 时回落到内置仿 QQ 音。QQ-style notification sounds for DeepSeek Harness.",
   "type": "module",
   "exports": {
