@@ -47,7 +47,7 @@ dsh plugin --profile <你的 profile> add dsh-qq-sounds
 ### 方式 3：从 GitHub 源码
 
 ```sh
-dsh plugin --profile <你的 profile> add github:gexiubin/dsh-qq-sounds
+dsh plugin --profile <你的 profile> add github:GeXiubinHelloWorld/dsh-qq-sounds
 ```
 
 ## 首次使用

@@ -34,12 +34,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gexiubin/dsh-qq-sounds.git"
+    "url": "git+https://github.com/GeXiubinHelloWorld/dsh-qq-sounds.git"
   },
   "bugs": {
-    "url": "https://github.com/gexiubin/dsh-qq-sounds/issues"
+    "url": "https://github.com/GeXiubinHelloWorld/dsh-qq-sounds/issues"
   },
-  "homepage": "https://github.com/gexiubin/dsh-qq-sounds#readme",
+  "homepage": "https://github.com/GeXiubinHelloWorld/dsh-qq-sounds#readme",
   "engines": {
     "node": ">=22"
   },

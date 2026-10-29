@@ -29,7 +29,7 @@ Or:
 ```sh
 dsh plugin --profile <your-profile> add dsh-qq-sounds
 # or from source
-dsh plugin --profile <your-profile> add github:gexiubin/dsh-qq-sounds
+dsh plugin --profile <your-profile> add github:GeXiubinHelloWorld/dsh-qq-sounds
 ```
 
 `<your-profile>` is the directory name under `~/.dsh/profiles/` (usually `web` or `desktop`). A restart is required: the bundle list is only read at boot.
