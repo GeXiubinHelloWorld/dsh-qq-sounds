@@ -136,6 +136,21 @@ test("audio 路由按字节回音频，坏路径报 404", async () => {
   });
 });
 
+test("audio64 路由以 base64 JSON 回音频（桌面端 IPC 桥用）", async () => {
+  await withServer(async (base) => {
+    if (!existsSync(QQ_WAV)) return;
+    const response = await fetch(`${base}/api/qq-sounds/audio64?path=${encodeURIComponent(QQ_WAV)}`);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("content-type"), "application/json; charset=utf-8");
+    const payload = await response.json();
+    assert.equal(payload.mime, "audio/wav");
+    const bytes = Buffer.from(payload.b64, "base64");
+    assert.equal(bytes.length, payload.bytes);
+    assert.equal(bytes.subarray(0, 4).toString("latin1"), "RIFF");
+    assert.equal(bytes.length, 9220);
+  });
+});
+
 test("清理临时数据目录", async () => {
   await rm(dataDir, { recursive: true, force: true });
 });

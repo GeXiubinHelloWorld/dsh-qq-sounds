@@ -77,6 +77,8 @@ function loadBundle() {
     window,
     document,
     console,
+    location: { protocol: "http:", host: "127.0.0.1:52045" },
+    navigator: { userAgent: "test-agent Electron/1.0" },
     setTimeout,
     clearTimeout,
     setInterval: () => 0,
