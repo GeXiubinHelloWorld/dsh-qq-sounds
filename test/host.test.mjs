@@ -12,6 +12,7 @@ import {
   lastAssistantText,
   normalizeConfig,
   detectQQ,
+  transcodeToPcm,
   createCore
 } from "../lib/host.js";
 
@@ -195,6 +196,34 @@ test("detectQQ：用 user-data 之外的目录探测到 QQ 音效", async (t) =>
   const hit = await detectQQ({ qq: { dir: "" } });
   assert.ok(hit.files.msg.endsWith("msg.wav"));
   assert.ok(hit.files.system.endsWith("system.wav"));
+});
+
+test("transcodeToPcm：QQ 的 MS ADPCM 音效会被解成 PCM16", async (t) => {
+  const wav = "C:\\software_setup\\qq\\Misc\\Sound\\Classic\\msg.wav";
+  if (!existsSync(wav)) {
+    t.skip("本机没有 QQ 的 msg.wav，跳过");
+    return;
+  }
+  const { readFile } = await import("node:fs/promises");
+  const src = await readFile(wav);
+  assert.equal(src.readUInt16LE(20), 2, "源文件应是 MS ADPCM");
+
+  const out = transcodeToPcm(src);
+  assert.notEqual(out, null, "应返回转码后的 PCM");
+  assert.equal(out.readUInt16LE(20), 1, "wFormatTag 应为 PCM");
+  assert.equal(out.readUInt16LE(22), 1, "单声道");
+  assert.equal(out.readUInt16LE(34), 16, "16 bit");
+  const samples = out.readUInt32LE(40) / 2;
+  assert.ok(samples > 1000, "应解出足够样本");
+  assert.ok(samples / out.readUInt32LE(24) > 0.3, "时长应大于 0.3 秒");
+});
+
+test("transcodeToPcm：PCM 音效原样返回 null（不重打包）", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const wav = "C:\\software_setup\\qq\\Misc\\Sound\\Classic\\system.wav";
+  if (!existsSync(wav)) return;
+  const src = await readFile(wav);
+  assert.equal(transcodeToPcm(src), null);
 });
 
 test("清理临时数据目录", async () => {

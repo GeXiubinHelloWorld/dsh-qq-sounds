@@ -147,7 +147,9 @@ test("audio64 路由以 base64 JSON 回音频（桌面端 IPC 桥用）", async 
     const bytes = Buffer.from(payload.b64, "base64");
     assert.equal(bytes.length, payload.bytes);
     assert.equal(bytes.subarray(0, 4).toString("latin1"), "RIFF");
-    assert.equal(bytes.length, 9220);
+    // QQ 的 msg.wav 是 MS ADPCM，宿主应已转成 PCM16 再返回（浏览器解不了 ADPCM）。
+    assert.equal(bytes.readUInt16LE(20), 1, "返回的应是 PCM，而非 ADPCM");
+    assert.ok(bytes.length > 9220, "转成 PCM16 后会变大");
   });
 });
 
