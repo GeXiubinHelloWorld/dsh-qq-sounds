@@ -4,6 +4,8 @@
 
 [中文](README.md) | English
 
+![Settings: QQ alert sounds](assets/settings.png)
+
 ## What it does
 
 | When | Default sound |
